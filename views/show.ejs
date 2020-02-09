@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<body style="background-color:rgb(240, 243, 243)">
+  <div style="margin-bottom:10px">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+  <div class="container">
+    <a class="nav-link-active py-0" href="/blogs"><SPAN style="color:white">HOME</SPAN></a>
+    <a class="navbar-brand py-0" href="/blogs">
+        <span class="navbar-brand mb-1 h1">BLOG SITE</span>
+    </a>
+    <a class="nav-link py-0" href="/blogs/new"><span style="color:white"> NEWPOST</span></a>
+  </div>
+</nav>
+</div>
+
+<div style="margin-left:50px;margin-right:50px;margin-top:20px;">
+<div style="margin:auto;width:60% ">
+<img style="margin:auto;width:100%" src="<%=blog.image %>">
+</div>
+<hr>
+<h1><%= blog.title %></h1>
+<style>
+  p::first-letter{
+    font-size: 250%;
+  }
+</style>
+<p><%= blog.content %></p>
+
+<button  type="submit" class="btn btn-dark"  style="display:inline-block" onclick="window.location.href='/blogs/<%= blog.id %>/edit';">
+EDIT
+</button>
+<form  style="display:inline-block;margin-left:10px" action="/blogs/<%= blog._id%>?_method=DELETE" method="POST">
+  <button  type="submit" class="btn btn-dark" >DELETE</button>
+</form>
+<hr>
+
+<% blog.comments.forEach(function(data){ %>
+  <div><span  style="font-style:oblique;"><%= data.text %></span> <span  style="font-style:oblique;float:right;margin-right:20px">-<%= data.author %></span></div>
+
+<% }); %>
+<br>
+
+
+
+
+  <form style="    width: 20%;
+    " action="/blogs/<%=blog._id %>" method="post">
+    <div class="form-group" >
+      <label for="author">NAME</label>
+      <input type="text" id="author" class="form-control" name="author" placeholder="name">
+
+    </div>
+   
+    <div class="form-group"style="margin-top:0px;">
+      <label for="text">Comment</label>
+      <input type="textarea" id="text" class="form-control" name="text" placeholder="Comment">
+
+    </div>
+    <button  type="submit" class="btn btn-dark">ADD COMMENT</button>
+  </form>
+
+
+</div>
+</body>
