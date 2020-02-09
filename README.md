@@ -1,4 +1,4 @@
-# BLOG-
+# BLOG
 
 ## Instructions to Run 
 1. Go to the project directory.
